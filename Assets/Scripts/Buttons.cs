@@ -9,6 +9,7 @@ public class Buttons : MonoBehaviour
     public Button button;
     public GameObject Text; 
     public GameObject loop;
+    public GameObject manager;
 
     bool canStart;
 
@@ -41,7 +42,11 @@ public class Buttons : MonoBehaviour
         Text.GetComponent<TextMeshProUGUI>().SetText("1");
         yield return new WaitForSeconds(1f);
         Text.GetComponent<TextMeshProUGUI>().SetText("GO!");
-        loopyboy = Instantiate(loop, new Vector3(0,0,0), Quaternion.identity);
+        loopyboy = Instantiate(loop, new Vector3(0,0,-20), Quaternion.identity);
+        loopyboy.GetComponent<FrameLoopController>().delay = manager.GetComponent<Manager>().delay;
+        loopyboy.GetComponent<FrameLoopController>().color = manager.GetComponent<Manager>().color;
+        loopyboy.GetComponent<FrameLoopController>().framerate = manager.GetComponent<Manager>().framerate;
+
         yield return new WaitForSeconds(2f);
         button.interactable = true;
     }

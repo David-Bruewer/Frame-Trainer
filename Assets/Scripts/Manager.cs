@@ -8,11 +8,14 @@ public class Manager : MonoBehaviour
 
     //Sets Framerate
     public GameObject FrameRateSetter;
-    public int Framerate;
+    public int framerate;
 
     //Sets number of inputs 
-    public GameObject InputSetter;
-    public int inputs;
+    public GameObject DelaySetter;
+    public int delay;
+
+    public GameObject ColorChange;
+    public int color;
 
     //FrameLoop Prefab 
     public GameObject loop;
@@ -27,14 +30,14 @@ public class Manager : MonoBehaviour
     {
         //updates framerate
         string frs = FrameRateSetter.GetComponent<TMP_InputField>().text;
-        int.TryParse(frs, out Framerate);
+        int.TryParse(frs, out framerate);
 
         //updates # of inputs 
-        string ips = InputSetter.GetComponent<TMP_InputField>().text;
-        int.TryParse(ips, out inputs);
+        string ips = DelaySetter.GetComponent<TMP_InputField>().text;
+        int.TryParse(ips, out delay);
 
-        if(Input.GetKeyDown(KeyCode.A)){
-            Instantiate(loop, new Vector3(0,0,0), Quaternion.identity);
-        }
+        string cs = ColorChange.GetComponent<TMP_InputField>().text;
+        int.TryParse(cs, out color);
+
     }
 }

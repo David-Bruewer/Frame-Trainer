@@ -9,20 +9,27 @@ public class FrameLoopController : MonoBehaviour
     
     public GameObject TextBox;
 
+    public GameObject ColorChange;
+
     //framerate 
-    public int FrameRate;
+    public int framerate;
 
     public string inputs;
+
+    public int delay;
+
+    public int color;
 
     // current frame
     int frame = 1;
     // Start is called before the first frame update
     void Start()
     {
+      ColorChange.SetActive(false);
       //disable vsync 
       QualitySettings.vSyncCount = 0; 
       //caps framerate at framerate
-      Application.targetFrameRate = FrameRate;  
+      Application.targetFrameRate = framerate;  
       
     }
 
@@ -30,10 +37,15 @@ public class FrameLoopController : MonoBehaviour
     void Update()
     {
       if (Input.anyKeyDown){
-        inputs += frame.ToString() + " "+ Input.inputString;
+        inputs += (frame - delay).ToString() + " "+ Input.inputString;
         TextBox.GetComponent<TextMeshProUGUI>().SetText(inputs);
         inputs += ", "; 
       } 
+
+      if(frame == color)
+      {
+        ColorChange.SetActive(true);
+      }
        frame ++;
 
     }
